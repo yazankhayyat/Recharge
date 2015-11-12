@@ -9,11 +9,11 @@
 #import "RechargeViewControler.h"
 #import "GasStation.h"
 #import "LocationController.h"
-#import "SWRevealViewController.h"
+
 @import MapKit;
 @import CoreLocation;
 
-@interface RechargeViewControler () <CLLocationManagerDelegate, MKMapViewDelegate> {
+@interface RechargeViewControler () <CLLocationManagerDelegate, MKMapViewDelegate, SWRevealViewControllerDelegate> {
     MKPolyline *_routeOverlay;
 
 }
@@ -47,7 +47,7 @@
                        (id)[[UIColor colorWithRed:0.98 green:0.74 blue:0.73 alpha:1] CGColor],
                        nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
-    [self createRevealViewController];
+//    [self createRevealViewController];
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = 10;
@@ -67,18 +67,18 @@
 //    }];
 }
 
--(void)createRevealViewController {
+//-(void)createRevealViewController {
     
-    SWRevealViewController *revealController = [self revealViewController];
-    
-    
-    [revealController panGestureRecognizer];
-    [revealController tapGestureRecognizer];
-    
-    UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reveal-icon.png"]
-                                                                         style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
-    self.navigationItem.leftBarButtonItem = revealButtonItem;
-}
+//    SWRevealViewController *revealController = [self revealViewController];
+//    
+//    
+//    [revealController panGestureRecognizer];
+//    [revealController tapGestureRecognizer];
+//    
+//    UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reveal-icon.png"]
+//                                                                         style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
+//    self.navigationItem.leftBarButtonItem = revealButtonItem;
+//}
 
 
 -(void)showGasStations {

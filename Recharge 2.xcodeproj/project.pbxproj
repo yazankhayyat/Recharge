@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AC1769541BED3EA400D82166 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1769531BED3EA400D82166 /* SWRevealViewController.m */; };
 		AC17695C1BED5CE800D82166 /* SliderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC17695B1BED5CE800D82166 /* SliderTableViewController.m */; };
+		AC20E6FF1BF547C5001B3E68 /* SWRevealDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC20E6FE1BF547C5001B3E68 /* SWRevealDelegate.m */; };
 		AC3B56DE1BE2BF0A0024CB07 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3B56DD1BE2BF0A0024CB07 /* LocationController.m */; };
 		AC3B56E11BE2CD920024CB07 /* UIAlert+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */; };
 		ACB54CEB1BDFBF76004BEECA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB54CEA1BDFBF76004BEECA /* main.m */; };
@@ -45,6 +46,8 @@
 		AC1769531BED3EA400D82166 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
 		AC17695A1BED5CE800D82166 /* SliderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderTableViewController.h; sourceTree = "<group>"; };
 		AC17695B1BED5CE800D82166 /* SliderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTableViewController.m; sourceTree = "<group>"; };
+		AC20E6FD1BF547C5001B3E68 /* SWRevealDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealDelegate.h; sourceTree = "<group>"; };
+		AC20E6FE1BF547C5001B3E68 /* SWRevealDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealDelegate.m; sourceTree = "<group>"; };
 		AC3B56DC1BE2BF0A0024CB07 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationController.h; path = ../../../../Downloads/LocationController.h; sourceTree = "<group>"; };
 		AC3B56DD1BE2BF0A0024CB07 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationController.m; path = ../../../../Downloads/LocationController.m; sourceTree = "<group>"; };
 		AC3B56DF1BE2CD920024CB07 /* UIAlert+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlert+Blocks.h"; sourceTree = "<group>"; };
@@ -126,9 +129,19 @@
 				ACB54D3E1BDFFC79004BEECA /* GasStation.m */,
 				AC3B56DC1BE2BF0A0024CB07 /* LocationController.h */,
 				AC3B56DD1BE2BF0A0024CB07 /* LocationController.m */,
-				ACB54D401BE03D11004BEECA /* Location.gpx */,
 			);
 			name = LocationServices;
+			sourceTree = "<group>";
+		};
+		AC20E7001BF5490C001B3E68 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				AC20E6FD1BF547C5001B3E68 /* SWRevealDelegate.h */,
+				AC20E6FE1BF547C5001B3E68 /* SWRevealDelegate.m */,
+				ACB54CEC1BDFBF76004BEECA /* AppDelegate.h */,
+				ACB54CED1BDFBF76004BEECA /* AppDelegate.m */,
+			);
+			name = Delegates;
 			sourceTree = "<group>";
 		};
 		ACB54CDD1BDFBF76004BEECA = {
@@ -154,17 +167,11 @@
 		ACB54CE81BDFBF76004BEECA /* Recharge 2 */ = {
 			isa = PBXGroup;
 			children = (
-				ACB54CEC1BDFBF76004BEECA /* AppDelegate.h */,
-				ACB54CED1BDFBF76004BEECA /* AppDelegate.m */,
+				ACB54CF21BDFBF76004BEECA /* Main.storyboard */,
+				AC20E7001BF5490C001B3E68 /* Delegates */,
 				AC1769551BED4DF000D82166 /* MainViews */,
 				AC1769591BED4F0800D82166 /* LocationServices */,
 				AC1769581BED4E3A00D82166 /* SliderView */,
-				AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */,
-				AC3B56DF1BE2CD920024CB07 /* UIAlert+Blocks.h */,
-				ACB54CF21BDFBF76004BEECA /* Main.storyboard */,
-				ACB54CF51BDFBF76004BEECA /* Assets.xcassets */,
-				ACB54CF71BDFBF76004BEECA /* LaunchScreen.storyboard */,
-				ACB54CFA1BDFBF76004BEECA /* Info.plist */,
 				ACB54CE91BDFBF76004BEECA /* Supporting Files */,
 			);
 			path = "Recharge 2";
@@ -173,6 +180,12 @@
 		ACB54CE91BDFBF76004BEECA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ACB54D401BE03D11004BEECA /* Location.gpx */,
+				AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */,
+				AC3B56DF1BE2CD920024CB07 /* UIAlert+Blocks.h */,
+				ACB54CF71BDFBF76004BEECA /* LaunchScreen.storyboard */,
+				ACB54CF51BDFBF76004BEECA /* Assets.xcassets */,
+				ACB54CFA1BDFBF76004BEECA /* Info.plist */,
 				ACB54CEA1BDFBF76004BEECA /* main.m */,
 			);
 			name = "Supporting Files";
@@ -334,6 +347,7 @@
 				ACB54D3F1BDFFC79004BEECA /* GasStation.m in Sources */,
 				AC1769541BED3EA400D82166 /* SWRevealViewController.m in Sources */,
 				AC3B56DE1BE2BF0A0024CB07 /* LocationController.m in Sources */,
+				AC20E6FF1BF547C5001B3E68 /* SWRevealDelegate.m in Sources */,
 				ACB54CF11BDFBF76004BEECA /* RechargeViewControler.m in Sources */,
 				ACB54CEE1BDFBF76004BEECA /* AppDelegate.m in Sources */,
 				ACB54CEB1BDFBF76004BEECA /* main.m in Sources */,

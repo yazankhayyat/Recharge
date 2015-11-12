@@ -7,7 +7,12 @@
 //
 
 #import "MainPageViewController.h"
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
+
+#import "RechargeViewControler.h"
+#import "SliderTableViewController.h"
+#import "SWRevealViewController.h"
+#import "MainPageViewController.h"
 
 @interface MainPageViewController ()
 
@@ -26,25 +31,23 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)showGasStations:(id)sender {
     
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate showReveal];
     
+    RechargeViewControler *frontViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RechargeViewControler"];
+    
+    SliderTableViewController *rearViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SliderTableViewController"];
+    
+    UINavigationController *frontNav = [[UINavigationController alloc]initWithRootViewController:frontViewController];
+    
+    
+    UINavigationController *rearNav = [[UINavigationController alloc] initWithRootViewController:rearViewController];
+    
+    SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:rearNav frontViewController:frontNav];
+    
+    SWRevealDelegate *revealDelegate = revealController.delegate;
+    frontViewController.revealDelegate = revealDelegate;
+    
+    [self.navigationController pushViewController:frontViewController animated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

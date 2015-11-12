@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
+#import "SWRevealDelegate.h"
 
 
 @interface RechargeViewControler : UIViewController
+@property (nonatomic, strong) SWRevealDelegate *revealDelegate;
 @end
 
