@@ -11,7 +11,7 @@
 
 #import "RechargeViewControler.h"
 #import "SliderTableViewController.h"
-#import "SWRevealViewController.h"
+#import "RevealViewController.h"
 #import "MainPageViewController.h"
 
 @interface MainPageViewController ()

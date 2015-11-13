@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWRevealViewController.h"
+#import "RevealViewController.h"
 
 
 @interface RechargeViewControler : UIViewController

@@ -8,7 +8,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="J9v-5h-DIc">
             <objects>
-                <viewController id="Lhj-b0-7bk" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController id="Lhj-b0-7bk" customClass="RevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y4l-fe-xwf"/>
                         <viewControllerLayoutGuide type="bottom" id="QCt-mf-LYI"/>
@@ -16,7 +16,6 @@
                     <view key="view" contentMode="scaleToFill" id="Aya-fc-Pa3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <segue destination="FBm-is-eTB" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Kho-VP-1hd"/>

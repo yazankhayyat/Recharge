@@ -69,11 +69,11 @@
 
 -(void)createRevealViewController {
     
- //   SWRevealViewController *revealController = [self revealViewController];
-    
-    [self.menuButton setTarget:self.revealViewController];
+    RevealViewController *revealViewController = (RevealViewController *)self.revealViewController;
+    revealViewController.locationManager = self.locationManager;
+    [self.menuButton setTarget:revealViewController];
     [self.menuButton setAction:@selector(revealToggle:)];
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    [self.view addGestureRecognizer:revealViewController.panGestureRecognizer];
 
 }
 
