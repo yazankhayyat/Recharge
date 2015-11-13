@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="j8E-nx-t2j">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,10 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="FBm-is-eTB" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Kho-VP-1hd"/>
+                        <segue destination="bRs-Iq-CYv" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="S0b-MW-P76"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n34-p5-8Xu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1161" y="432"/>
+            <point key="canvasLocation" x="1131" y="418"/>
         </scene>
         <!--Main Page View Controller-->
         <scene sceneID="bec-iG-pWs">
@@ -40,6 +44,7 @@
                                 <state key="normal" image="GasPumpButton"/>
                                 <connections>
                                     <action selector="showGasStations:" destination="j8E-nx-t2j" eventType="touchUpInside" id="P62-uG-faV"/>
+                                    <segue destination="Lhj-b0-7bk" kind="show" id="C78-qE-Y7z"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recharge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfC-5v-hId">
@@ -69,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hax-8a-lWi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="452" y="432"/>
+            <point key="canvasLocation" x="373" y="418"/>
         </scene>
         <!--Recharge View Controler-->
         <scene sceneID="tne-QT-ifu">
@@ -143,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1903" y="-185"/>
+            <point key="canvasLocation" x="2715" y="-185"/>
         </scene>
         <!--Slider Table View Controller-->
         <scene sceneID="PuJ-Uv-yZD">
@@ -171,7 +176,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVG-gn-cfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1903" y="1022"/>
+            <point key="canvasLocation" x="1903" y="1366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wfX-tT-CN7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FBm-is-eTB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vXF-pw-vTS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bea-o5-dnd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VPP-Ft-2Zn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1935" y="-185"/>
         </scene>
     </scenes>
     <resources>
