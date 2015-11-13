@@ -31,23 +31,4 @@
     // Do any additional setup after loading the view.
 }
 
-- (IBAction)showGasStations:(id)sender {
-    
-    
-    RechargeViewControler *frontViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RechargeViewControler"];
-    
-    SliderTableViewController *rearViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SliderTableViewController"];
-    
-    UINavigationController *frontNav = [[UINavigationController alloc]initWithRootViewController:frontViewController];
-    
-    
-    UINavigationController *rearNav = [[UINavigationController alloc] initWithRootViewController:rearViewController];
-    
-    SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:rearNav frontViewController:frontNav];
-    
-    SWRevealDelegate *revealDelegate = revealController.delegate;
-    frontViewController.revealDelegate = revealDelegate;
-    
-    [self.navigationController pushViewController:frontViewController animated:YES];
-}
 @end
