@@ -31,4 +31,14 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self performSelector:@selector(loadRevealViewController) withObject:self afterDelay:3.0];
+    
+}
+
+- (void)loadRevealViewController {
+    [self performSegueWithIdentifier:@"RevealViewController" sender:self];
+}
+
 @end

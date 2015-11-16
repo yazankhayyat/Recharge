@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSString *addressString;
 @property (nonatomic, strong) NSString *nameString;
 @property (nonatomic ,strong) MKPointAnnotation *closestMarker;
+@property (nonatomic ,strong) RevealViewController *revealController;
 @property MKRoute *routeDetails;
 
 @end
@@ -50,7 +51,8 @@
     [self.view.layer insertSublayer:gradient atIndex:0];
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 10;
+    self.locationManager.distanceFilter = 1000;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [self.view bringSubviewToFront:self.mapView];
     self.addressLabel.adjustsFontSizeToFitWidth = YES;
     
@@ -69,22 +71,24 @@
 
 -(void)createRevealViewController {
     
-    RevealViewController *revealViewController = (RevealViewController *)self.revealViewController;
-    revealViewController.locationManager = self.locationManager;
-    [self.menuButton setTarget:revealViewController];
+    self.revealController = (RevealViewController *)self.revealViewController;
+    
+    self.revealController.locationManager = self.locationManager;
+    [self.menuButton setTarget:self.revealController];
     [self.menuButton setAction:@selector(revealToggle:)];
-    [self.view addGestureRecognizer:revealViewController.panGestureRecognizer];
+    [self.view addGestureRecognizer:self.revealController.panGestureRecognizer];
 
 }
 
 
 -(void)showGasStations {
     //msj9zzc952qknnh88cfbbw92
+   // hx6emten4cp32yp53pjyrafn
     
     [self.buffer startAnimating];
     self.buffer.hidden = NO;
 
-    NSString *urlString = [NSString stringWithFormat:@"http://api.sandbox.yellowapi.com/FindBusiness/?what=gas+stations&where=cZ%f,%f&pgLen=108&pg=1&dist=1&fmt=JSON&lang=en&UID=6472349276&apikey=msj9zzc952qknnh88cfbbw92", self.locationManager.location.coordinate.longitude, self.locationManager.location.coordinate.latitude];
+    NSString *urlString = [NSString stringWithFormat:@"http://api.sandbox.yellowapi.com/FindBusiness/?what=gas+stations&where=cZ%f,%f&pgLen=108&pg=1&dist=1&fmt=JSON&lang=en&UID=6472349276&apikey=hx6emten4cp32yp53pjyrafn", self.locationManager.location.coordinate.longitude, self.locationManager.location.coordinate.latitude];
     NSLog(@"%@", urlString);
     
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -184,7 +188,7 @@
      didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
     NSLog(@"User loc: %f", self.locationManager.location.coordinate.latitude);
-    
+    self.revealController.locationManager = self.locationManager;
     CLLocation *location = [locations firstObject];
     if (!self.initialLocationSet) {
         self.initialLocationSet = YES;

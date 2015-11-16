@@ -42,7 +42,7 @@
                                 <rect key="frame" x="248" y="230" width="104" height="140"/>
                                 <state key="normal" image="GasPumpButton"/>
                                 <connections>
-                                    <segue destination="Lhj-b0-7bk" kind="show" id="C78-qE-Y7z"/>
+                                    <segue destination="Lhj-b0-7bk" kind="show" identifier="RevealViewController" id="PnC-M2-MQc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recharge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfC-5v-hId">
