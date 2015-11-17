@@ -14,6 +14,9 @@
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSString *gasStationName;
+@property (nonatomic, strong) NSString *gasPricePremium;
+@property (nonatomic, strong) NSString *gasPriceUnleaded;
+@property (nonatomic, strong) NSString *gasPriceMidGrade;
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *subtitle;
 @property MKRoute *gasStationRoute;

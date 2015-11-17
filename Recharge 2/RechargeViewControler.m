@@ -15,7 +15,7 @@
 
 @interface RechargeViewControler () <CLLocationManagerDelegate, MKMapViewDelegate, SWRevealViewControllerDelegate> {
     MKPolyline *_routeOverlay;
-
+    
 }
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSString *nameString;
 @property (nonatomic ,strong) MKPointAnnotation *closestMarker;
 @property (nonatomic ,strong) RevealViewController *revealController;
+@property (nonatomic ,strong) UIColor *barTintColor;
 @property MKRoute *routeDetails;
 
 @end
@@ -38,15 +39,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createRevealViewController];
-
+    
     self.mapView.delegate = self;
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.79 green:0.23 blue:0.20 alpha:1];
     self.initialLocationSet = NO;
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
     gradient.frame = self.view.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[self.view.backgroundColor CGColor],
                        (id)[self.view.backgroundColor CGColor],
-                       (id)[[UIColor colorWithRed:0.98 green:0.74 blue:0.73 alpha:1] CGColor],
+                       (id)[[UIColor colorWithRed:0.99 green:0.50 blue:0.50 alpha:1] CGColor],
                        nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
     self.locationManager = [[CLLocationManager alloc]init];
@@ -63,10 +65,10 @@
         }
     }
     
-//    [[LocationController sharedInstance] checkLocationAuthorizationStatus];
-//    [[LocationController sharedInstance] currentLocationDataWithCompletion:^(CLPlacemark *placemark, NSError *error) {
-//
-//    }];
+    //    [[LocationController sharedInstance] checkLocationAuthorizationStatus];
+    //    [[LocationController sharedInstance] currentLocationDataWithCompletion:^(CLPlacemark *placemark, NSError *error) {
+    //
+    //    }];
 }
 
 -(void)createRevealViewController {
@@ -74,20 +76,24 @@
     self.revealController = (RevealViewController *)self.revealViewController;
     
     self.revealController.locationManager = self.locationManager;
+    self.navigationController.navigationBar.topItem.title = @"Recharge";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+                                                                      NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                                      NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular"  size:16]}];
     [self.menuButton setTarget:self.revealController];
     [self.menuButton setAction:@selector(revealToggle:)];
     [self.view addGestureRecognizer:self.revealController.panGestureRecognizer];
-
+    
 }
 
 
 -(void)showGasStations {
     //msj9zzc952qknnh88cfbbw92
-   // hx6emten4cp32yp53pjyrafn
+    // hx6emten4cp32yp53pjyrafn
     
     [self.buffer startAnimating];
     self.buffer.hidden = NO;
-
+    
     NSString *urlString = [NSString stringWithFormat:@"http://api.sandbox.yellowapi.com/FindBusiness/?what=gas+stations&where=cZ%f,%f&pgLen=108&pg=1&dist=1&fmt=JSON&lang=en&UID=6472349276&apikey=hx6emten4cp32yp53pjyrafn", self.locationManager.location.coordinate.longitude, self.locationManager.location.coordinate.latitude];
     NSLog(@"%@", urlString);
     
@@ -107,7 +113,7 @@
                 CLLocationDistance closestDistance = INFINITY;
                 
                 NSMutableArray *markers = [[NSMutableArray alloc] init];
-                                           
+                
                 for (NSDictionary *dictionary in myGasStationsArray) {
                     NSDictionary *theGeoCodeDictionary = dictionary[@"geoCode"];
                     MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
@@ -131,9 +137,9 @@
                             self.routeDetails = response.routes.firstObject;
                         }
                     }];
-            
-
-//                    CLLocationDistance distance = [self.locationManager.location distanceFromLocation:[[CLLocation alloc] initWithLatitude:marker.coordinate.latitude longitude:marker.coordinate.longitude]];
+                    
+                    
+                    //                    CLLocationDistance distance = [self.locationManager.location distanceFromLocation:[[CLLocation alloc] initWithLatitude:marker.coordinate.latitude longitude:marker.coordinate.longitude]];
                     
                     if (self.routeDetails.distance < closestDistance) {
                         self.addressString = addressName;
@@ -144,7 +150,7 @@
                     
                     [markers addObject:marker];
                 }
-                                           
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.buffer stopAnimating];
                     self.buffer.hidden = YES;
@@ -164,13 +170,13 @@
 //    if(_routeOverlay) {
 //        [self.mapView removeOverlay:_routeOverlay];
 //    }
-//    
+//
 //    // Update the ivar
 //    _routeOverlay = route.polyline;
-//    
+//
 //    // Add it to the map
 //    [self.mapView addOverlay:_routeOverlay];
-//    
+//
 //}
 
 
@@ -193,7 +199,7 @@
     if (!self.initialLocationSet) {
         self.initialLocationSet = YES;
         NSLog(@">> User loc: %f", self.locationManager.location.coordinate.latitude);
-
+        
         MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.04, 0.04));
         [self.mapView setRegion:region animated:NO];
         
@@ -206,10 +212,13 @@
                 self.placeMark = placemark;
                 
             }
+            
+            [self showGasStations];
+            NSLog(@"Called twice");
+            
         }];
     }
-
-    [self showGasStations];
+    
 }
 
 
@@ -241,15 +250,15 @@
               initialSpringVelocity:1
                             options:UIViewAnimationOptionRepeat|UIViewAnimationOptionAllowUserInteraction
                          animations:^{
-            
-            CGPoint oldCenter = pinView.center;
-            oldCenter.y += 10;
-            pinView.center = oldCenter;
-            
-        } completion:NULL];
-         
+                             
+                             CGPoint oldCenter = pinView.center;
+                             oldCenter.y += 10;
+                             pinView.center = oldCenter;
+                             
+                         } completion:NULL];
+        
     }
-
+    
     return pinView;
 }
 
@@ -266,7 +275,7 @@
     
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
     
-
+    
 }
 
 

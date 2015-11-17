@@ -8,7 +8,12 @@
 
 #import "RevealViewController.h"
 
+
 @interface RevealViewController ()
+
+@property (nonatomic, strong) GasStation *currentGasStation;
+@property double currentLat;
+@property double currentLong;
 
 @end
 
@@ -16,35 +21,113 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    super.revealViewController.delegate = self;
+    self.gasArray = [[NSMutableArray alloc]init];
+    super.delegate = self;
+
 }
 
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position {
+    [self fetchXMLData];
+}
+
+
+- (void)fetchXMLData {
+    NSString *urlString = [NSString stringWithFormat:@"http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCURsteIXf6Xt9dQ4v9yLBNhmNaK3p7m/xb&Latitude=%f&Longitude=%f&SortByProduct=Unleaded", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+    
+    NSURL *url = [[NSURL alloc]initWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:urlRequest
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                               if (connectionError == nil) {
+                                   NSString *dataAsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                                   NSLog(@"data String : %@", dataAsString);
+                                   self.parser = [[NSXMLParser alloc]initWithData:data];
+                                   self.parser.delegate = self;
+                                   [self.parser parse];
+                                   
+                               }
+                               
+                           }];
     
 }
 
-- (void)revealToggle:(id)sender
-{
-    [self doSomething];
-    [super revealToggleAnimated:YES];
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(NSDictionary<NSString *, NSString *> *)attributeDict {
+    self.element = nil;
+    if ([elementName isEqualToString:@"StationPricesMultiPlus"]) {
+        self.currentGasStation = [[GasStation alloc]init];
+        self.currentLong = HUGE_VALF;
+        self.currentLat = HUGE_VALF;
+        
+        //        NSLog(@"element dictionary: %@", attributeDict);
+        //    }
+        //
+        //    if ([elementName isEqualToString:@"Station_Name"]) {
+        //        self.element = nil;
+        //        return;
+        //    }
+        //
+        //    if ([elementName isEqualToString:@"Unleaded_Price"]) {
+        //        self.element = nil;
+        //        return;
+        //    }
+        //
+        //    if ([elementName isEqualToString:@"LATITUDE"]) {
+        //        self.element = nil;
+        //        return;
+        //
+        //    }
+        //    
+        //    if ([elementName isEqualToString:@"LONGITUDE"]) {
+        //        self.element = nil;
+        //        return;
+        //    }
+    }
 }
-- (void)_handleRevealGesture:(UIPanGestureRecognizer *)recognizer {
-    [self doSomething];
-    [super _handleRevealGesture:recognizer];
+
+-(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    if (!self.element) {
+        self.element = [[NSMutableString alloc]init];
+    }
+    [self.element appendString:string];
     
 }
 
-- (void)doSomething {
-    // get location
-    NSLog(@"location manager : %@ called in: %s", self.locationManager, __PRETTY_FUNCTION__);
-    // get data
+-(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
-    NSLog(@"do something");
+    if ([elementName isEqualToString:@"Station_Name"]) {
+        self.currentGasStation.gasStationName = self.element;
+        return;
+    }
+    
+    if ([elementName isEqualToString:@"Unleaded_Price"]) {
+        self.currentGasStation.gasPriceUnleaded = self.element;
+        NSLog(@"unleaded price: %@",self.currentGasStation.gasPriceUnleaded);
+        return;
+    }
+    if ([elementName isEqualToString:@"LATITUDE"]) {
+//    [elementName substringFromIndex:1];
+        self.currentLat= [self.element doubleValue];
+        if (self.currentLong != HUGE_VALF) {
+            self.currentGasStation.coordinate = CLLocationCoordinate2DMake(self.currentLat, self.currentLong);
+            NSLog(@"Long: %f, lat:%f", self.currentLong, self.currentLat);
+        }
+    }
+    if ([elementName isEqualToString:@"LONGITUDE"]) {
+        self.currentLong = [self.element doubleValue];
+        if (self.currentLat != HUGE_VALF) {
+            self.currentGasStation.coordinate = CLLocationCoordinate2DMake(self.currentLat, self.currentLong);
+            NSLog(@"Long: %f, lat:%f", self.currentLong, self.currentLat);
+
+        }
+        
+    }
+    if ([elementName isEqualToString:@"StationPricesMultiPlus"]) {
+        [self.gasArray addObject:self.currentGasStation];
+    }
+    
 }
 
-- (BOOL)revealControllerPanGestureShouldBegin:(SWRevealViewController *)revealController {
-    
-    return YES;
-}
+
 
 @end
