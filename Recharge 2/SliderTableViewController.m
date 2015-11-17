@@ -20,8 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self fetchData];
-
+   
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -30,15 +29,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-
--(void)fetchData {
-    CLLocationManager *manager = [self getManager];
-    
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+     NSLog(@"------------------------> gasArray 2: %@", self.gasStationsArray);
 }
 
-- (CLLocationManager *)getManager {
-    return nil;
-}
+
 
 #pragma mark - Table view data source
 

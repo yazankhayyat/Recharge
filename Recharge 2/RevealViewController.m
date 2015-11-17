@@ -7,6 +7,7 @@
 //
 
 #import "RevealViewController.h"
+#import "SliderTableViewController.h"
 
 
 @interface RevealViewController ()
@@ -27,12 +28,14 @@
 }
 
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position {
-    [self fetchXMLData];
+    if (position == FrontViewPositionRight) {
+        [self fetchXMLData];
+    }
 }
 
 
 - (void)fetchXMLData {
-    NSString *urlString = [NSString stringWithFormat:@"http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCURsteIXf6Xt9dQ4v9yLBNhmNaK3p7m/xb&Latitude=%f&Longitude=%f&SortByProduct=Unleaded", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUwarkHoWW8poQ9PmbIbGAtI9CY8r9AdmR&Latitude=%f&Longitude=%f&SortByProduct=Unleaded", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
     
     NSURL *url = [[NSURL alloc]initWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -124,8 +127,16 @@
     }
     if ([elementName isEqualToString:@"StationPricesMultiPlus"]) {
         [self.gasArray addObject:self.currentGasStation];
+        NSLog(@"................>>>>> gas Array : %@", self.gasArray);
     }
     
+}
+
+-(void)parserDidEndDocument:(NSXMLParser *)parser {
+    
+    SliderTableViewController *sliderTableView = (SliderTableViewController *)self.rearViewController;
+    sliderTableView.gasStationsArray = self.gasArray;
+    [sliderTableView viewWillAppear:NO];
 }
 
 
