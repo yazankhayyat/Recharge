@@ -9,6 +9,7 @@
 #import "SliderTableViewController.h"
 #import "GasStation.h"
 #import "RechargeViewControler.h"
+#import "GasStationTableViewCell.h"
 
 @interface SliderTableViewController ()
 
@@ -32,6 +33,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
      NSLog(@"------------------------> gasArray 2: %@", self.gasStationsArray);
+    [self.tableView reloadData];
 }
 
 
@@ -45,12 +47,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 8;
+    return self.gasStationsArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    GasStationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    GasStation *gasStation = self.gasStationsArray[indexPath.row];
+    cell.stationNameLabel.text = gasStation.gasStationName;
+    
+    
     
     return cell;
 }

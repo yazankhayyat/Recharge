@@ -10,6 +10,7 @@
 		AC1769541BED3EA400D82166 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1769531BED3EA400D82166 /* SWRevealViewController.m */; };
 		AC17695C1BED5CE800D82166 /* SliderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC17695B1BED5CE800D82166 /* SliderTableViewController.m */; };
 		AC20E7051BF65EE1001B3E68 /* RevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC20E7041BF65EE1001B3E68 /* RevealViewController.m */; };
+		AC2B98A41BFBD75600D7F7AC /* GasStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B98A31BFBD75600D7F7AC /* GasStationTableViewCell.m */; };
 		AC3B56DE1BE2BF0A0024CB07 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3B56DD1BE2BF0A0024CB07 /* LocationController.m */; };
 		AC3B56E11BE2CD920024CB07 /* UIAlert+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */; };
 		ACB54CEB1BDFBF76004BEECA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB54CEA1BDFBF76004BEECA /* main.m */; };
@@ -48,6 +49,8 @@
 		AC17695B1BED5CE800D82166 /* SliderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTableViewController.m; sourceTree = "<group>"; };
 		AC20E7031BF65EE1001B3E68 /* RevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevealViewController.h; sourceTree = "<group>"; };
 		AC20E7041BF65EE1001B3E68 /* RevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RevealViewController.m; sourceTree = "<group>"; };
+		AC2B98A21BFBD75600D7F7AC /* GasStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GasStationTableViewCell.h; sourceTree = "<group>"; };
+		AC2B98A31BFBD75600D7F7AC /* GasStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GasStationTableViewCell.m; sourceTree = "<group>"; };
 		AC3B56DC1BE2BF0A0024CB07 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationController.h; path = ../../../../Downloads/LocationController.h; sourceTree = "<group>"; };
 		AC3B56DD1BE2BF0A0024CB07 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationController.m; path = ../../../../Downloads/LocationController.m; sourceTree = "<group>"; };
 		AC3B56DF1BE2CD920024CB07 /* UIAlert+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlert+Blocks.h"; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 				AC1769531BED3EA400D82166 /* SWRevealViewController.m */,
 				AC20E7031BF65EE1001B3E68 /* RevealViewController.h */,
 				AC20E7041BF65EE1001B3E68 /* RevealViewController.m */,
+				AC2B98A21BFBD75600D7F7AC /* GasStationTableViewCell.h */,
+				AC2B98A31BFBD75600D7F7AC /* GasStationTableViewCell.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				ACDA5AD21BE124A000362BCD /* MainPageViewController.m in Sources */,
 				ACB54D3F1BDFFC79004BEECA /* GasStation.m in Sources */,
 				AC1769541BED3EA400D82166 /* SWRevealViewController.m in Sources */,
+				AC2B98A41BFBD75600D7F7AC /* GasStationTableViewCell.m in Sources */,
 				AC3B56DE1BE2BF0A0024CB07 /* LocationController.m in Sources */,
 				ACB54CF11BDFBF76004BEECA /* RechargeViewControler.m in Sources */,
 				ACB54CEE1BDFBF76004BEECA /* AppDelegate.m in Sources */,

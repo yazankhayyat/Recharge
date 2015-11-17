@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.gasArray = [[NSMutableArray alloc]init];
+    self.rearViewRevealWidth = self.view.frame.size.width - 40;
     super.delegate = self;
 
 }
