@@ -26,6 +26,7 @@
     [super viewDidLoad];
     self.gasArray = [[NSMutableArray alloc]init];
     self.rearViewRevealWidth = self.view.frame.size.width - 40;
+    self.currentGasStation.gasStationLocationManager = self.locationManager;
     super.delegate = self;
 
 }

@@ -18,7 +18,6 @@
     
 }
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLPlacemark *placeMark;
 @property (assign, nonatomic) BOOL initialLocationSet;
 @property (nonatomic, strong) MKPinAnnotationView *myAnnotationView;

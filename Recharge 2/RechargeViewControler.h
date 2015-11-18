@@ -12,5 +12,6 @@
 
 @interface RechargeViewControler : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @end
 

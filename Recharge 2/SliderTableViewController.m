@@ -59,17 +59,24 @@
     cell.priceLabel.text = gasStation.gasPriceUnleaded;
     cell.distanceLabel.text = gasStation.gasStationDistance;
     
-    if (gasStation.gasStationDistance) {
-        NSLog(@"stuff!");
-    }
-    
-    
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    GasStation *gasStation = self.gasStationsArray[indexPath.row];
+    CLLocationManager *locationManager = ((RevealViewController*)self.parentViewController).locationManager;
+    
+    NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/maps?saddr=%f,%f&daddr=%f,%f",
+                     locationManager.location.coordinate.latitude,
+                     locationManager.location.coordinate.longitude,
+                     gasStation.coordinate.latitude,
+                     gasStation.coordinate.longitude];
+    
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+    
+
 }
 
 /*
