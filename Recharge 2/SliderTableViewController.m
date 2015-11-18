@@ -10,6 +10,8 @@
 #import "GasStation.h"
 #import "RechargeViewControler.h"
 #import "GasStationTableViewCell.h"
+@import MapKit;
+@import CoreLocation;
 
 @interface SliderTableViewController ()
 
@@ -37,7 +39,6 @@
 }
 
 
-
 #pragma mark - Table view data source
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -55,12 +56,21 @@
     GasStationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     GasStation *gasStation = self.gasStationsArray[indexPath.row];
     cell.stationNameLabel.text = gasStation.gasStationName;
+    cell.priceLabel.text = gasStation.gasPriceUnleaded;
+    cell.distanceLabel.text = gasStation.gasStationDistance;
+    
+    if (gasStation.gasStationDistance) {
+        NSLog(@"stuff!");
+    }
     
     
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

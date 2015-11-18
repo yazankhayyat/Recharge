@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *gasPricePremium;
 @property (nonatomic, strong) NSString *gasPriceUnleaded;
 @property (nonatomic, strong) NSString *gasPriceMidGrade;
+@property (nonatomic, strong) NSString *gasStationDistance;
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *subtitle;
 @property MKRoute *gasStationRoute;

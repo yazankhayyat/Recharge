@@ -15,6 +15,8 @@
 @property (nonatomic, strong) GasStation *currentGasStation;
 @property double currentLat;
 @property double currentLong;
+@property NSString *currentDistance;
+
 
 @end
 
@@ -99,6 +101,8 @@
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
+    __block GasStation *blockGasStation = self.currentGasStation;
+    
     if ([elementName isEqualToString:@"Station_Name"]) {
         self.currentGasStation.gasStationName = self.element;
         return;
@@ -109,26 +113,49 @@
         NSLog(@"unleaded price: %@",self.currentGasStation.gasPriceUnleaded);
         return;
     }
+    
     if ([elementName isEqualToString:@"LATITUDE"]) {
-//    [elementName substringFromIndex:1];
         self.currentLat= [self.element doubleValue];
-        if (self.currentLong != HUGE_VALF) {
-            self.currentGasStation.coordinate = CLLocationCoordinate2DMake(self.currentLat, self.currentLong);
-            NSLog(@"Long: %f, lat:%f", self.currentLong, self.currentLat);
-        }
     }
+    
     if ([elementName isEqualToString:@"LONGITUDE"]) {
         self.currentLong = [self.element doubleValue];
         if (self.currentLat != HUGE_VALF) {
             self.currentGasStation.coordinate = CLLocationCoordinate2DMake(self.currentLat, self.currentLong);
-            NSLog(@"Long: %f, lat:%f", self.currentLong, self.currentLat);
+            MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+            MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:
+                                                 CLLocationCoordinate2DMake(self.currentLat, self.currentLong)
+                                                                     addressDictionary:nil];
+            MKPlacemark *sourcePlaceMark = [[MKPlacemark alloc]initWithCoordinate:self.locationManager.location.coordinate addressDictionary:nil];
+
+            [request setSource:[[MKMapItem alloc]initWithPlacemark:sourcePlaceMark]];
+             
+            [request setDestination:[[MKMapItem alloc] initWithPlacemark:destinationPlacemark]];
+            
+            request.transportType = MKDirectionsTransportTypeAutomobile;
+            MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+            
+            [directions calculateETAWithCompletionHandler:^(MKETAResponse *response, NSError *error) {
+                
+                if (error) {
+                    NSLog(@"Error %@", error.description);
+                } else {
+                    blockGasStation.gasStationDistance = [NSString stringWithFormat:@"%f",response.expectedTravelTime];
+                    NSLog(@"");
+                }
+                
+                SliderTableViewController *sliderTableView = (SliderTableViewController *)self.rearViewController;
+                [sliderTableView.tableView reloadData];
+                
+            }];
+       //     NSLog(@"Long: %f, lat:%f", self.currentLong, self.currentLat);
 
         }
         
     }
     if ([elementName isEqualToString:@"StationPricesMultiPlus"]) {
         [self.gasArray addObject:self.currentGasStation];
-        NSLog(@"................>>>>> gas Array : %@", self.gasArray);
+      //  NSLog(@"................>>>>> gas Array : %@", self.gasArray);
     }
     
 }

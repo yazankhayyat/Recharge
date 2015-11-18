@@ -130,13 +130,13 @@
                     MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
                     
                     
-                    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
-                        if (error) {
-                            NSLog(@"Error %@", error.description);
-                        } else {
-                            self.routeDetails = response.routes.firstObject;
-                        }
-                    }];
+//                    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+//                        if (error) {
+////                            NSLog(@"Error %@", error.description);
+//                        } else {
+//                            self.routeDetails = response.routes.firstObject;
+//                        }
+//                    }];
                     
                     
                     //                    CLLocationDistance distance = [self.locationManager.location distanceFromLocation:[[CLLocation alloc] initWithLatitude:marker.coordinate.latitude longitude:marker.coordinate.longitude]];
