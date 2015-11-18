@@ -14,7 +14,7 @@
 @import CoreLocation;
 
 @interface SliderTableViewController ()
-
+@property (nonatomic, strong) NSArray *sortedGasStationsArray;
 
 
 @end
@@ -26,15 +26,22 @@
     [super viewDidAppear:animated];
      NSLog(@"------------------------> gasArray 2: %@", self.gasStationsArray);
     [self.tableView reloadData];
+    if (self.sortedGasStationsArray.count == 0) {
+        return;
+    }
+    [self sortGasArray];
+    
 }
 
-
+-(void)sortGasArray {
+    
+    self.sortedGasStationsArray = [self.gasStationsArray sortedArrayUsingComparator:^NSComparisonResult(GasStation* obj1, GasStation*  obj2) {
+        NSNumber *first = @([obj1.gasPriceUnleaded floatValue]);
+        NSNumber *second = @([obj2.gasPriceUnleaded floatValue]);
+        return [first compare:second];
+    }];
+}
 #pragma mark - Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 5;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -80,49 +87,5 @@
     return [NSString stringWithFormat:@"%02ld:%02ld",(long)hours, (long)minutes];
     
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

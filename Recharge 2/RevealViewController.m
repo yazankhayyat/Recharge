@@ -111,7 +111,9 @@
     }
     
     if ([elementName isEqualToString:@"Unleaded_Price"]) {
-        self.currentGasStation.gasPriceUnleaded = self.element;
+        CGFloat priceAsFloat = [self.element floatValue];
+        NSString *priceAsString = [NSString stringWithFormat:@"%0.3f",priceAsFloat];
+        self.currentGasStation.gasPriceUnleaded = priceAsString;
         NSLog(@"unleaded price: %@",self.currentGasStation.gasPriceUnleaded);
         return;
     }
@@ -173,9 +175,7 @@
 //    view.backgroundColor = [UIColor orangeColor];
 //    [sliderTableView.tableView addSubview:view];
     [sliderTableView viewWillAppear:NO];
-//    for (GasStation *station in self.gasArray) {
-//        NSLog(@"/////////////------+++++++++ time to reach station: %@",station.gasStationTime);
-//    }
+   
 }
 
 
