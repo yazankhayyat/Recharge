@@ -39,7 +39,7 @@
 
 
 - (void)fetchXMLData {
-    NSString *urlString = [NSString stringWithFormat:@"http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUwarkHoWW8poQ9PmbIbGAtI9CY8r9AdmR&Latitude=%f&Longitude=%f&SortByProduct=Unleaded", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUmrmTgZTilqs8f2rhqcYI1YDViIOqpW7M&Latitude=%f&Longitude=%f&SortByProduct=Unleaded", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
     
     NSURL *url = [[NSURL alloc]initWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -60,6 +60,7 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(NSDictionary<NSString *, NSString *> *)attributeDict {
+    
     self.element = nil;
     if ([elementName isEqualToString:@"StationPricesMultiPlus"]) {
         self.currentGasStation = [[GasStation alloc]init];
@@ -136,15 +137,18 @@
             request.transportType = MKDirectionsTransportTypeAutomobile;
             MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
             
+            
             [directions calculateETAWithCompletionHandler:^(MKETAResponse *response, NSError *error) {
                 
                 if (error) {
                     NSLog(@"Error %@", error.description);
                 } else {
-                    blockGasStation.gasStationDistance = [NSString stringWithFormat:@"%f",response.expectedTravelTime];
-                    NSLog(@"");
+                    blockGasStation.gasStationTime = [NSString stringWithFormat:@"%f",response.expectedTravelTime];
+
+//                    NSLog(@"gas station time: %d", self.gasArray.);
                 }
-                
+//                blockGasStation.gasStationTime = [NSString stringWithFormat:@"%f",response.expectedTravelTime];
+
                 SliderTableViewController *sliderTableView = (SliderTableViewController *)self.rearViewController;
                 [sliderTableView.tableView reloadData];
                 
@@ -165,7 +169,13 @@
     
     SliderTableViewController *sliderTableView = (SliderTableViewController *)self.rearViewController;
     sliderTableView.gasStationsArray = self.gasArray;
+//    UIView *view = [[UIView alloc] initWithFrame:sliderTableView.view.frame];
+//    view.backgroundColor = [UIColor orangeColor];
+//    [sliderTableView.tableView addSubview:view];
     [sliderTableView viewWillAppear:NO];
+//    for (GasStation *station in self.gasArray) {
+//        NSLog(@"/////////////------+++++++++ time to reach station: %@",station.gasStationTime);
+//    }
 }
 
 

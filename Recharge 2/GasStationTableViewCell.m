@@ -11,6 +11,10 @@
 @implementation GasStationTableViewCell
 
 - (void)awakeFromNib {
+//    self.stationNameLabel.adjustsFontSizeToFitWidth = YES;
+//    self.distanceLabel.adjustsFontSizeToFitWidth = YES;
+//    self.priceLabel.adjustsFontSizeToFitWidth = YES;
+
     // Initialization code
 }
 

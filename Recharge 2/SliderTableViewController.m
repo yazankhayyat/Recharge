@@ -21,16 +21,6 @@
 
 @implementation SliderTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-   
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -56,8 +46,9 @@
     GasStationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     GasStation *gasStation = self.gasStationsArray[indexPath.row];
     cell.stationNameLabel.text = gasStation.gasStationName;
-    cell.priceLabel.text = gasStation.gasPriceUnleaded;
-    cell.distanceLabel.text = gasStation.gasStationDistance;
+    cell.priceLabel.text = [NSString stringWithFormat:@"Unleaded Gas Price: %@", gasStation.gasPriceUnleaded];
+    cell.distanceLabel.text = [NSString stringWithFormat:@"Time needed: %@",[self stringFromTimeInterval:gasStation.gasStationTime]];
+    
     
     
     return cell;
@@ -76,7 +67,18 @@
     
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
     
+    
 
+}
+
+-(NSString *)stringFromTimeInterval:(NSString *)intervalString {
+    NSInteger interval = [intervalString intValue];
+    NSInteger ti = (NSInteger)interval;
+    NSInteger minutes = (ti/60) % 60;
+    NSInteger hours = (ti/3600);
+    
+    return [NSString stringWithFormat:@"%02ld:%02ld",(long)hours, (long)minutes];
+    
 }
 
 /*

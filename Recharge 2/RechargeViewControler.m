@@ -94,8 +94,7 @@
     self.buffer.hidden = NO;
     
     NSString *urlString = [NSString stringWithFormat:@"http://api.sandbox.yellowapi.com/FindBusiness/?what=gas+stations&where=cZ%f,%f&pgLen=108&pg=1&dist=1&fmt=JSON&lang=en&UID=6472349276&apikey=hx6emten4cp32yp53pjyrafn", self.locationManager.location.coordinate.longitude, self.locationManager.location.coordinate.latitude];
-    NSLog(@"%@", urlString);
-    
+
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -192,12 +191,10 @@
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
-    NSLog(@"User loc: %f", self.locationManager.location.coordinate.latitude);
     self.revealController.locationManager = self.locationManager;
     CLLocation *location = [locations firstObject];
     if (!self.initialLocationSet) {
         self.initialLocationSet = YES;
-        NSLog(@">> User loc: %f", self.locationManager.location.coordinate.latitude);
         
         MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.04, 0.04));
         [self.mapView setRegion:region animated:NO];
@@ -213,7 +210,6 @@
             }
             
             [self showGasStations];
-            NSLog(@"Called twice");
             
         }];
     }
