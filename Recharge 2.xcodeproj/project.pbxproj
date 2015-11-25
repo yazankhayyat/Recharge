@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC1769541BED3EA400D82166 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1769531BED3EA400D82166 /* SWRevealViewController.m */; };
+		AA759A0C1C06716C00739F67 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA759A0B1C06716B00739F67 /* SWRevealViewController.m */; };
+		AA759A0F1C0671A100739F67 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA759A0E1C0671A100739F67 /* LocationController.m */; };
 		AC17695C1BED5CE800D82166 /* SliderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC17695B1BED5CE800D82166 /* SliderTableViewController.m */; };
-		AC3B56DE1BE2BF0A0024CB07 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3B56DD1BE2BF0A0024CB07 /* LocationController.m */; };
+		AC20E7051BF65EE1001B3E68 /* RevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC20E7041BF65EE1001B3E68 /* RevealViewController.m */; };
+		AC2B98A41BFBD75600D7F7AC /* GasStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B98A31BFBD75600D7F7AC /* GasStationTableViewCell.m */; };
 		AC3B56E11BE2CD920024CB07 /* UIAlert+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */; };
 		ACB54CEB1BDFBF76004BEECA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB54CEA1BDFBF76004BEECA /* main.m */; };
 		ACB54CEE1BDFBF76004BEECA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB54CED1BDFBF76004BEECA /* AppDelegate.m */; };
@@ -41,12 +43,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AC1769521BED3EA400D82166 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
-		AC1769531BED3EA400D82166 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
+		AA759A0A1C06716B00739F67 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		AA759A0B1C06716B00739F67 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		AA759A0D1C0671A100739F67 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		AA759A0E1C0671A100739F67 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		AC17695A1BED5CE800D82166 /* SliderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderTableViewController.h; sourceTree = "<group>"; };
 		AC17695B1BED5CE800D82166 /* SliderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTableViewController.m; sourceTree = "<group>"; };
-		AC3B56DC1BE2BF0A0024CB07 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationController.h; path = ../../../../Downloads/LocationController.h; sourceTree = "<group>"; };
-		AC3B56DD1BE2BF0A0024CB07 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationController.m; path = ../../../../Downloads/LocationController.m; sourceTree = "<group>"; };
+		AC20E7031BF65EE1001B3E68 /* RevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevealViewController.h; sourceTree = "<group>"; };
+		AC20E7041BF65EE1001B3E68 /* RevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RevealViewController.m; sourceTree = "<group>"; };
+		AC2B98A21BFBD75600D7F7AC /* GasStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GasStationTableViewCell.h; sourceTree = "<group>"; };
+		AC2B98A31BFBD75600D7F7AC /* GasStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GasStationTableViewCell.m; sourceTree = "<group>"; };
 		AC3B56DF1BE2CD920024CB07 /* UIAlert+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlert+Blocks.h"; sourceTree = "<group>"; };
 		AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlert+Blocks.m"; sourceTree = "<group>"; };
 		ACB54CE61BDFBF76004BEECA /* Recharge 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recharge 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,26 +103,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AC1769551BED4DF000D82166 /* MainViews */ = {
+		AC1769551BED4DF000D82166 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				ACDA5AD01BE124A000362BCD /* MainPageViewController.h */,
 				ACDA5AD11BE124A000362BCD /* MainPageViewController.m */,
 				ACB54CEF1BDFBF76004BEECA /* RechargeViewControler.h */,
 				ACB54CF01BDFBF76004BEECA /* RechargeViewControler.m */,
-			);
-			name = MainViews;
-			sourceTree = "<group>";
-		};
-		AC1769581BED4E3A00D82166 /* SliderView */ = {
-			isa = PBXGroup;
-			children = (
 				AC17695A1BED5CE800D82166 /* SliderTableViewController.h */,
 				AC17695B1BED5CE800D82166 /* SliderTableViewController.m */,
-				AC1769521BED3EA400D82166 /* SWRevealViewController.h */,
-				AC1769531BED3EA400D82166 /* SWRevealViewController.m */,
 			);
-			name = SliderView;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		AC1769591BED4F0800D82166 /* LocationServices */ = {
@@ -124,17 +121,39 @@
 			children = (
 				ACB54D3D1BDFFC79004BEECA /* GasStation.h */,
 				ACB54D3E1BDFFC79004BEECA /* GasStation.m */,
-				AC3B56DC1BE2BF0A0024CB07 /* LocationController.h */,
-				AC3B56DD1BE2BF0A0024CB07 /* LocationController.m */,
-				ACB54D401BE03D11004BEECA /* Location.gpx */,
+				AA759A0D1C0671A100739F67 /* LocationController.h */,
+				AA759A0E1C0671A100739F67 /* LocationController.m */,
 			);
 			name = LocationServices;
+			sourceTree = "<group>";
+		};
+		AC20E7001BF5490C001B3E68 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				ACB54CEC1BDFBF76004BEECA /* AppDelegate.h */,
+				ACB54CED1BDFBF76004BEECA /* AppDelegate.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		AC20E7021BF6568E001B3E68 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				AA759A0A1C06716B00739F67 /* SWRevealViewController.h */,
+				AA759A0B1C06716B00739F67 /* SWRevealViewController.m */,
+				AC20E7031BF65EE1001B3E68 /* RevealViewController.h */,
+				AC20E7041BF65EE1001B3E68 /* RevealViewController.m */,
+				AC2B98A21BFBD75600D7F7AC /* GasStationTableViewCell.h */,
+				AC2B98A31BFBD75600D7F7AC /* GasStationTableViewCell.m */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 		ACB54CDD1BDFBF76004BEECA = {
 			isa = PBXGroup;
 			children = (
 				ACB54CE81BDFBF76004BEECA /* Recharge 2 */,
+				ACB54CE91BDFBF76004BEECA /* Supporting Files */,
 				ACB54D021BDFBF76004BEECA /* Recharge 2Tests */,
 				ACB54D0D1BDFBF76004BEECA /* Recharge 2UITests */,
 				ACB54CE71BDFBF76004BEECA /* Products */,
@@ -154,18 +173,9 @@
 		ACB54CE81BDFBF76004BEECA /* Recharge 2 */ = {
 			isa = PBXGroup;
 			children = (
-				ACB54CEC1BDFBF76004BEECA /* AppDelegate.h */,
-				ACB54CED1BDFBF76004BEECA /* AppDelegate.m */,
-				AC1769551BED4DF000D82166 /* MainViews */,
-				AC1769591BED4F0800D82166 /* LocationServices */,
-				AC1769581BED4E3A00D82166 /* SliderView */,
-				AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */,
-				AC3B56DF1BE2CD920024CB07 /* UIAlert+Blocks.h */,
 				ACB54CF21BDFBF76004BEECA /* Main.storyboard */,
-				ACB54CF51BDFBF76004BEECA /* Assets.xcassets */,
-				ACB54CF71BDFBF76004BEECA /* LaunchScreen.storyboard */,
-				ACB54CFA1BDFBF76004BEECA /* Info.plist */,
-				ACB54CE91BDFBF76004BEECA /* Supporting Files */,
+				AC1769551BED4DF000D82166 /* ViewControllers */,
+				AC1769591BED4F0800D82166 /* LocationServices */,
 			);
 			path = "Recharge 2";
 			sourceTree = "<group>";
@@ -173,9 +183,18 @@
 		ACB54CE91BDFBF76004BEECA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AC20E7021BF6568E001B3E68 /* Library */,
+				AC20E7001BF5490C001B3E68 /* Delegates */,
+				ACB54D401BE03D11004BEECA /* Location.gpx */,
+				AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */,
+				AC3B56DF1BE2CD920024CB07 /* UIAlert+Blocks.h */,
+				ACB54CF71BDFBF76004BEECA /* LaunchScreen.storyboard */,
+				ACB54CF51BDFBF76004BEECA /* Assets.xcassets */,
+				ACB54CFA1BDFBF76004BEECA /* Info.plist */,
 				ACB54CEA1BDFBF76004BEECA /* main.m */,
 			);
 			name = "Supporting Files";
+			path = "Recharge 2";
 			sourceTree = "<group>";
 		};
 		ACB54D021BDFBF76004BEECA /* Recharge 2Tests */ = {
@@ -330,14 +349,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC3B56E11BE2CD920024CB07 /* UIAlert+Blocks.m in Sources */,
+				AC20E7051BF65EE1001B3E68 /* RevealViewController.m in Sources */,
 				ACDA5AD21BE124A000362BCD /* MainPageViewController.m in Sources */,
 				ACB54D3F1BDFFC79004BEECA /* GasStation.m in Sources */,
-				AC1769541BED3EA400D82166 /* SWRevealViewController.m in Sources */,
-				AC3B56DE1BE2BF0A0024CB07 /* LocationController.m in Sources */,
+				AC2B98A41BFBD75600D7F7AC /* GasStationTableViewCell.m in Sources */,
 				ACB54CF11BDFBF76004BEECA /* RechargeViewControler.m in Sources */,
 				ACB54CEE1BDFBF76004BEECA /* AppDelegate.m in Sources */,
+				AA759A0F1C0671A100739F67 /* LocationController.m in Sources */,
 				ACB54CEB1BDFBF76004BEECA /* main.m in Sources */,
 				AC17695C1BED5CE800D82166 /* SliderTableViewController.m in Sources */,
+				AA759A0C1C06716C00739F67 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

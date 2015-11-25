@@ -7,7 +7,12 @@
 //
 
 #import "MainPageViewController.h"
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
+
+#import "RechargeViewControler.h"
+#import "SliderTableViewController.h"
+#import "RevealViewController.h"
+#import "MainPageViewController.h"
 
 @interface MainPageViewController ()
 
@@ -17,34 +22,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@", self.view.backgroundColor);
+    //NSLog(@"%@", self.view.backgroundColor);
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[self.view.backgroundColor CGColor],(id)[self.view.backgroundColor CGColor], (id)[[UIColor colorWithRed:0.98 green:0.74 blue:0.73 alpha:1] CGColor], nil];
+    gradient.colors = [NSArray arrayWithObjects:(id)[self.view.backgroundColor CGColor],(id)[self.view.backgroundColor CGColor], (id)[[UIColor colorWithRed:0.99 green:0.5 blue:0.5 alpha:1] CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
     
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (IBAction)showGasStations:(id)sender {
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate showReveal];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self performSelector:@selector(loadRevealViewController) withObject:self afterDelay:3.0];
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)loadRevealViewController {
+    [self performSegueWithIdentifier:@"RevealViewController" sender:self];
 }
-*/
 
 @end

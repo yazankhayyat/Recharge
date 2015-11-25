@@ -7,13 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "RechargeViewControler.h"
-#import "SliderTableViewController.h"
-#import "SWRevealViewController.h"
-#import "MainPageViewController.h"
 
 
-@interface AppDelegate ()<SWRevealViewControllerDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -21,32 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    MainPageViewController *mainPageViewController = (MainPageViewController *)self.window.rootViewController;
-//    NSLog(@"%@", mainPageViewController);
+    self.window.tintColor = [UIColor whiteColor];
     return YES;
 }
 
--(void)showReveal {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window = window;
-    
-    RechargeViewControler *frontViewController =     [mainStoryboard instantiateViewControllerWithIdentifier:@"RechargeViewControler"];
-    SliderTableViewController *rearViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"SliderTableViewController"];
-    
-    UINavigationController *frontNavigationController = [[UINavigationController alloc] initWithRootViewController:frontViewController];
-    
-    UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
-    SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:rearNavigationController frontViewController:frontNavigationController];
-    
-    revealController.delegate = self;
-    
-    self.revealController = revealController;
-    
-    self.window.rootViewController = self.revealController;
-    [self.window makeKeyAndVisible];
-}
 
 @end
