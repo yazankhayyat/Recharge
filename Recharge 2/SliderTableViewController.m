@@ -24,7 +24,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-     NSLog(@"------------------------> gasArray 2: %@", self.gasStationsArray);
+     //NSLog(@"------------------------> gasArray 2: %@", self.gasStationsArray);
     [self.tableView reloadData];
     if (self.sortedGasStationsArray.count == 0) {
         return;
@@ -40,6 +40,7 @@
         NSNumber *second = @([obj2.gasPriceUnleaded floatValue]);
         return [first compare:second];
     }];
+    
 }
 #pragma mark - Table view data source
 
@@ -63,10 +64,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+   // http://maps.apple.com/maps?saddr=%f,%f&daddr=%f,%f
     GasStation *gasStation = self.gasStationsArray[indexPath.row];
     CLLocationManager *locationManager = ((RevealViewController*)self.parentViewController).locationManager;
     
-    NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/maps?saddr=%f,%f&daddr=%f,%f",
+    NSString* url = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f",
                      locationManager.location.coordinate.latitude,
                      locationManager.location.coordinate.longitude,
                      gasStation.coordinate.latitude,

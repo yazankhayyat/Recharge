@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@", self.view.backgroundColor);
+    //NSLog(@"%@", self.view.backgroundColor);
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[self.view.backgroundColor CGColor],(id)[self.view.backgroundColor CGColor], (id)[[UIColor colorWithRed:0.99 green:0.5 blue:0.5 alpha:1] CGColor], nil];

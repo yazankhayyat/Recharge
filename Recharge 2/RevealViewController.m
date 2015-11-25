@@ -28,7 +28,7 @@
     self.rearViewRevealWidth = self.view.frame.size.width - 40;
     self.currentGasStation.gasStationLocationManager = self.locationManager;
     super.delegate = self;
-
+    
 }
 
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position {
@@ -39,16 +39,63 @@
 
 
 - (void)fetchXMLData {
-    NSString *urlString = [NSString stringWithFormat:@"http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUmrmTgZTilqs8f2rhqcYI1YDViIOqpW7M&Latitude=%f&Longitude=%f&SortByProduct=Unleaded", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+    //    NSURLComponents *components = [[NSURLComponents alloc]init];
+    //    components.scheme = @"http";
+    //    components.host = @"services.opisnet.com";
+    //    components.path = @"/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults";
+    //    components.queryItems = @[
+    //                                  [NSURLQueryItem queryItemWithName:@"UserTicket" value:@"vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUGHCwCYdTtnSgEXn37RsDaOUpU9Ul33wH"],
+    //                                  [NSURLQueryItem queryItemWithName:@"Latitude" value:[NSString stringWithFormat:@"%f",self.locationManager.location.coordinate.latitude]],
+    //                                  [NSURLQueryItem queryItemWithName:@"Longitude" value:[NSString stringWithFormat:@"%f",self.locationManager.location.coordinate.longitude]],
+    //                                  [NSURLQueryItem queryItemWithName:@"SortByProduct" value:@"Unleaded"],
+    //                                  [NSURLQueryItem queryItemWithName:@"MaxResult" value:@"50"]
+    //                                  ];
+    //    NSURL *url = components.URL;
+    //    NSAssert(url, @"must not be nil");
     
-    NSURL *url = [[NSURL alloc]initWithString:urlString];
+    // https://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedWithDistanceResults?UserTicket=string&Latitude=string&Longitude=string&SortByProduct=string&distance=string&isFilteredByDistance=string&UserLatitude=string&UserLongitude=string
+   
+    // http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedWithDistanceResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUGHCwCYdTtnSgEXn37RsDaOUpU9Ul33wH&Latitude=43.667686&Longitude=-79.389023&UserLatitude=43.667686&UserLongitude=-79.389023&isFilteredByDistance=True&distance=5.0&SortByProduct=Unleaded
+   
+    
+    
+    // http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedWithDistanceResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUGHCwCYdTtnSgEXn37RsDaOUpU9Ul33wH&Latitude=43.667686&Longitude=-79.389023&UserLatitude=43.667686&UserLongitude=-79.389023&isFilteredByDistance=True&distance=5.0&SortByProduct=Unleaded
+    
+    
+    NSString *latitude = [NSString stringWithFormat:@"%f",self.locationManager.location.coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f",self.locationManager.location.coordinate.longitude];
+    
+    
+    
+    NSURLComponents *components = [[NSURLComponents alloc]init];
+    components.scheme = @"http";
+    components.host = @"services.opisnet.com";
+    components.path = @"/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedWithDistanceResults";
+    components.queryItems = @[
+                              [NSURLQueryItem queryItemWithName:@"UserTicket" value:@"vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUGHCwCYdTtnSgEXn37RsDaOUpU9Ul33wH" ],
+                              [NSURLQueryItem queryItemWithName:@"Latitude" value:latitude],
+                              [NSURLQueryItem queryItemWithName:@"Longitude" value:longitude],
+                              [NSURLQueryItem queryItemWithName:@"SortByProduct" value:@"Unleaded"],
+                              [NSURLQueryItem queryItemWithName:@"distance" value:@"3.0"],
+                              [NSURLQueryItem queryItemWithName:@"isFilteredByDistance" value:@"True"],
+                              [NSURLQueryItem queryItemWithName:@"UserLatitude" value:latitude],
+                              [NSURLQueryItem queryItemWithName:@"UserLongitude" value:longitude],];
+    NSURL *url = components.URL;
+    NSAssert(url, @"must not be nil");
+    NSLog(@"%s %@", __PRETTY_FUNCTION__, url);
+
+    //    NSString *urlString = [NSString stringWithFormat:@"http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUGHCwCYdTtnSgEXn37RsDaOUpU9Ul33wH&Latitude=%f&Longitude=%f&SortByProduct=Unleaded&isFilteredByDistance=True", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+    //     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //
+    //    NSURL *url = [[NSURL alloc]initWithString:urlString];
+    
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:urlRequest
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
                                if (connectionError == nil) {
                                    NSString *dataAsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-                                   NSLog(@"data String : %@", dataAsString);
+                               NSLog(@">>>>>>>>>>  data String :<<<<<<< %@", dataAsString);
                                    self.parser = [[NSXMLParser alloc]initWithData:data];
                                    self.parser.delegate = self;
                                    [self.parser parse];
@@ -62,34 +109,10 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(NSDictionary<NSString *, NSString *> *)attributeDict {
     
     self.element = nil;
-    if ([elementName isEqualToString:@"StationPricesMultiPlus"]) {
+    if ([elementName isEqualToString:@"StationPricesByLatLongMultiPlus"]) {
         self.currentGasStation = [[GasStation alloc]init];
         self.currentLong = HUGE_VALF;
         self.currentLat = HUGE_VALF;
-        
-        //        NSLog(@"element dictionary: %@", attributeDict);
-        //    }
-        //
-        //    if ([elementName isEqualToString:@"Station_Name"]) {
-        //        self.element = nil;
-        //        return;
-        //    }
-        //
-        //    if ([elementName isEqualToString:@"Unleaded_Price"]) {
-        //        self.element = nil;
-        //        return;
-        //    }
-        //
-        //    if ([elementName isEqualToString:@"LATITUDE"]) {
-        //        self.element = nil;
-        //        return;
-        //
-        //    }
-        //    
-        //    if ([elementName isEqualToString:@"LONGITUDE"]) {
-        //        self.element = nil;
-        //        return;
-        //    }
     }
 }
 
@@ -131,9 +154,9 @@
                                                  CLLocationCoordinate2DMake(self.currentLat, self.currentLong)
                                                                      addressDictionary:nil];
             MKPlacemark *sourcePlaceMark = [[MKPlacemark alloc]initWithCoordinate:self.locationManager.location.coordinate addressDictionary:nil];
-
+            
             [request setSource:[[MKMapItem alloc]initWithPlacemark:sourcePlaceMark]];
-             
+            
             [request setDestination:[[MKMapItem alloc] initWithPlacemark:destinationPlacemark]];
             
             request.transportType = MKDirectionsTransportTypeAutomobile;
@@ -146,23 +169,23 @@
                     NSLog(@"Error %@", error.description);
                 } else {
                     blockGasStation.gasStationTime = [NSString stringWithFormat:@"%f",response.expectedTravelTime];
-
-//                    NSLog(@"gas station time: %d", self.gasArray.);
+                    
+                    //                    NSLog(@"gas station time: %d", self.gasArray.);
                 }
-//                blockGasStation.gasStationTime = [NSString stringWithFormat:@"%f",response.expectedTravelTime];
-
+                //                blockGasStation.gasStationTime = [NSString stringWithFormat:@"%f",response.expectedTravelTime];
+                
                 SliderTableViewController *sliderTableView = (SliderTableViewController *)self.rearViewController;
                 [sliderTableView.tableView reloadData];
                 
             }];
-       //     NSLog(@"Long: %f, lat:%f", self.currentLong, self.currentLat);
-
+            //     NSLog(@"Long: %f, lat:%f", self.currentLong, self.currentLat);
+            
         }
         
     }
-    if ([elementName isEqualToString:@"StationPricesMultiPlus"]) {
+    if ([elementName isEqualToString:@"StationPricesByLatLongMultiPlus"]) {
         [self.gasArray addObject:self.currentGasStation];
-      //  NSLog(@"................>>>>> gas Array : %@", self.gasArray);
+        //  NSLog(@"................>>>>> gas Array : %@", self.gasArray);
     }
     
 }
@@ -171,11 +194,11 @@
     
     SliderTableViewController *sliderTableView = (SliderTableViewController *)self.rearViewController;
     sliderTableView.gasStationsArray = self.gasArray;
-//    UIView *view = [[UIView alloc] initWithFrame:sliderTableView.view.frame];
-//    view.backgroundColor = [UIColor orangeColor];
-//    [sliderTableView.tableView addSubview:view];
+    //    UIView *view = [[UIView alloc] initWithFrame:sliderTableView.view.frame];
+    //    view.backgroundColor = [UIColor orangeColor];
+    //    [sliderTableView.tableView addSubview:view];
     [sliderTableView viewWillAppear:NO];
-   
+    
 }
 
 
