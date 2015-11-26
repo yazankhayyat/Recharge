@@ -29,7 +29,6 @@
 @property (nonatomic ,strong) RevealViewController *revealController;
 @property (nonatomic ,strong) UIColor *barTintColor;
 @property MKRoute *routeDetails;
-
 @end
 
 @implementation RechargeViewControler
@@ -37,8 +36,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActiveNotification) name:@"UIApplicationDidBecomeActiveNotification" object:nil];
     [self createRevealViewController];
-    
     self.mapView.delegate = self;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.79 green:0.23 blue:0.20 alpha:1];
     self.initialLocationSet = NO;
@@ -70,19 +69,19 @@
     //    }];
 }
 
+- (void)applicationDidBecomeActiveNotification {
+    [self viewDidLoad];
+}
+
 -(void)createRevealViewController {
-    
     self.revealController = (RevealViewController *)self.revealViewController;
-    
     self.revealController.locationManager = self.locationManager;
     self.navigationController.navigationBar.topItem.title = @"Recharge";
-    [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                                      NSForegroundColorAttributeName: [UIColor whiteColor],
-                                                                      NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular"  size:16]}];
+    NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:16]};
+    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
     [self.menuButton setTarget:self.revealController];
     [self.menuButton setAction:@selector(revealToggle:)];
     [self.view addGestureRecognizer:self.revealController.panGestureRecognizer];
-    
 }
 
 
@@ -94,7 +93,7 @@
     self.buffer.hidden = NO;
     
     NSString *urlString = [NSString stringWithFormat:@"http://api.sandbox.yellowapi.com/FindBusiness/?what=gas+stations&where=cZ%f,%f&pgLen=108&pg=1&dist=1&fmt=JSON&lang=en&UID=6472349276&apikey=hx6emten4cp32yp53pjyrafn", self.locationManager.location.coordinate.longitude, self.locationManager.location.coordinate.latitude];
-
+    
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -125,16 +124,16 @@
                     [request setSource:[MKMapItem mapItemForCurrentLocation]];
                     [request setDestination:[[MKMapItem alloc] initWithPlacemark:destinationPlacemark]];
                     request.transportType = MKDirectionsTransportTypeAutomobile;
-                    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+                    // MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
                     
                     
-//                    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
-//                        if (error) {
-////                            NSLog(@"Error %@", error.description);
-//                        } else {
-//                            self.routeDetails = response.routes.firstObject;
-//                        }
-//                    }];
+                    //                    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+                    //                        if (error) {
+                    ////                            NSLog(@"Error %@", error.description);
+                    //                        } else {
+                    //                            self.routeDetails = response.routes.firstObject;
+                    //                        }
+                    //                    }];
                     
                     
                     //                    CLLocationDistance distance = [self.locationManager.location distanceFromLocation:[[CLLocation alloc] initWithLatitude:marker.coordinate.latitude longitude:marker.coordinate.longitude]];
@@ -251,15 +250,13 @@
                              pinView.center = oldCenter;
                              
                          } completion:NULL];
-        
     }
     
     return pinView;
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    
-    
+
     GasStation *gasStation = (GasStation *)view.annotation;
     
     NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/maps?saddr=%f,%f&daddr=%f,%f",
@@ -269,8 +266,10 @@
                      gasStation.coordinate.longitude];
     
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
-    
-    
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
