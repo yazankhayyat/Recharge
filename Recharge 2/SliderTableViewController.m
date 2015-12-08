@@ -54,8 +54,8 @@
     GasStationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     GasStation *gasStation = self.gasStationsArray[indexPath.row];
     cell.stationNameLabel.text = gasStation.gasStationName;
-    cell.priceLabel.text = [NSString stringWithFormat:@"Unleaded Gas Price: %@", gasStation.gasPriceUnleaded];
-    cell.distanceLabel.text = [NSString stringWithFormat:@"Time needed: %@",[self stringFromTimeInterval:gasStation.gasStationTime]];
+    cell.priceLabel.text = [NSString stringWithFormat:@"Unleaded Gas Price: $%@", gasStation.gasPriceUnleaded];
+    cell.distanceLabel.text = [NSString stringWithFormat:@"Time needed: %@ min",[self stringFromTimeInterval:gasStation.gasStationTime]];
     
     
     
@@ -84,9 +84,9 @@
     NSInteger interval = [intervalString intValue];
     NSInteger ti = (NSInteger)interval;
     NSInteger minutes = (ti/60) % 60;
-    NSInteger hours = (ti/3600);
+//    NSInteger hours = (ti/3600);
     
-    return [NSString stringWithFormat:@"%02ld:%02ld",(long)hours, (long)minutes];
+    return [NSString stringWithFormat:@"%01ld", (long)minutes];
     
 }
 

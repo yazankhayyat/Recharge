@@ -72,7 +72,7 @@
     components.host = @"services.opisnet.com";
     components.path = @"/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedWithDistanceResults";
     components.queryItems = @[
-                              [NSURLQueryItem queryItemWithName:@"UserTicket" value:@"vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUQdJXzgzijOmEIEyqEAyzIlIjt1NL7pgj" ],
+                              [NSURLQueryItem queryItemWithName:@"UserTicket" value:@"vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUJJ5INNTqfBp6e/Hv7TbkDKqyyiYGSrOS" ],
                               [NSURLQueryItem queryItemWithName:@"Latitude" value:latitude],
                               [NSURLQueryItem queryItemWithName:@"Longitude" value:longitude],
                               [NSURLQueryItem queryItemWithName:@"SortByProduct" value:@"Unleaded"],
@@ -135,7 +135,7 @@
     
     if ([elementName isEqualToString:@"Unleaded_Price"]) {
         CGFloat priceAsFloat = [self.element floatValue];
-        NSString *priceAsString = [NSString stringWithFormat:@"%0.3f",priceAsFloat];
+        NSString *priceAsString = [NSString stringWithFormat:@"%0.2f",priceAsFloat];
         self.currentGasStation.gasPriceUnleaded = priceAsString;
         NSLog(@"unleaded price: %@",self.currentGasStation.gasPriceUnleaded);
         return;

@@ -9,6 +9,7 @@
 #import "RechargeViewControler.h"
 #import "GasStation.h"
 #import "LocationController.h"
+#import "Reachability.h"
 
 @import MapKit;
 @import CoreLocation;
@@ -37,6 +38,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActiveNotification) name:@"UIApplicationDidBecomeActiveNotification" object:nil];
+    Reachability* reach = [Reachability reachabilityForInternetConnection];
+//    reach.reachableOnWWAN = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
+    
+    [reach startNotifier];
     [self createRevealViewController];
     self.mapView.delegate = self;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.79 green:0.23 blue:0.20 alpha:1];
@@ -72,6 +81,7 @@
 - (void)applicationDidBecomeActiveNotification {
     [self viewDidLoad];
 }
+
 
 -(void)createRevealViewController {
     self.revealController = (RevealViewController *)self.revealViewController;

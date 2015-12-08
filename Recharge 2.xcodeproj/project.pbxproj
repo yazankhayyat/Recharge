@@ -13,6 +13,8 @@
 		AC20E7051BF65EE1001B3E68 /* RevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC20E7041BF65EE1001B3E68 /* RevealViewController.m */; };
 		AC2B98A41BFBD75600D7F7AC /* GasStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B98A31BFBD75600D7F7AC /* GasStationTableViewCell.m */; };
 		AC3B56E11BE2CD920024CB07 /* UIAlert+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */; };
+		AC5DDEFE1C12FE130036B024 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5DDEFD1C12FE130036B024 /* Reachability.m */; };
+		AC5DDF001C12FFFB0036B024 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5DDEFF1C12FFFB0036B024 /* SystemConfiguration.framework */; };
 		ACB54CEB1BDFBF76004BEECA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB54CEA1BDFBF76004BEECA /* main.m */; };
 		ACB54CEE1BDFBF76004BEECA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB54CED1BDFBF76004BEECA /* AppDelegate.m */; };
 		ACB54CF11BDFBF76004BEECA /* RechargeViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB54CF01BDFBF76004BEECA /* RechargeViewControler.m */; };
@@ -55,6 +57,9 @@
 		AC2B98A31BFBD75600D7F7AC /* GasStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GasStationTableViewCell.m; sourceTree = "<group>"; };
 		AC3B56DF1BE2CD920024CB07 /* UIAlert+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlert+Blocks.h"; sourceTree = "<group>"; };
 		AC3B56E01BE2CD920024CB07 /* UIAlert+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlert+Blocks.m"; sourceTree = "<group>"; };
+		AC5DDEFC1C12FE130036B024 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		AC5DDEFD1C12FE130036B024 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		AC5DDEFF1C12FFFB0036B024 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		ACB54CE61BDFBF76004BEECA /* Recharge 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recharge 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACB54CEA1BDFBF76004BEECA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ACB54CEC1BDFBF76004BEECA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC5DDF001C12FFFB0036B024 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +145,8 @@
 		AC20E7021BF6568E001B3E68 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				AC5DDEFC1C12FE130036B024 /* Reachability.h */,
+				AC5DDEFD1C12FE130036B024 /* Reachability.m */,
 				AA759A0A1C06716B00739F67 /* SWRevealViewController.h */,
 				AA759A0B1C06716B00739F67 /* SWRevealViewController.m */,
 				AC20E7031BF65EE1001B3E68 /* RevealViewController.h */,
@@ -152,6 +160,7 @@
 		ACB54CDD1BDFBF76004BEECA = {
 			isa = PBXGroup;
 			children = (
+				AC5DDEFF1C12FFFB0036B024 /* SystemConfiguration.framework */,
 				ACB54CE81BDFBF76004BEECA /* Recharge 2 */,
 				ACB54CE91BDFBF76004BEECA /* Supporting Files */,
 				ACB54D021BDFBF76004BEECA /* Recharge 2Tests */,
@@ -358,6 +367,7 @@
 				AA759A0F1C0671A100739F67 /* LocationController.m in Sources */,
 				ACB54CEB1BDFBF76004BEECA /* main.m in Sources */,
 				AC17695C1BED5CE800D82166 /* SliderTableViewController.m in Sources */,
+				AC5DDEFE1C12FE130036B024 /* Reachability.m in Sources */,
 				AA759A0C1C06716C00739F67 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
