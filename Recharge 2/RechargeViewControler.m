@@ -11,6 +11,7 @@
 #import "LocationController.h"
 #import "Reachability.h"
 
+
 @import MapKit;
 @import CoreLocation;
 
@@ -29,24 +30,57 @@
 @property (nonatomic ,strong) MKPointAnnotation *closestMarker;
 @property (nonatomic ,strong) RevealViewController *revealController;
 @property (nonatomic ,strong) UIColor *barTintColor;
+@property (nonatomic, retain) Reachability *reach;
+
 @property MKRoute *routeDetails;
 @end
 
 @implementation RechargeViewControler
+@synthesize reach;
+
+
+-(void)viewWillAppear:(BOOL)animated {
+
+    }
+
+-(void)reachabilityChanged:(NSNotification*)notify {
+    Reachability *reachView = [notify object];
+    NSParameterAssert([reachView isKindOfClass: [Reachability class]]);
+    
+    NetworkStatus netStatus = [self.reach currentReachabilityStatus];
+    if (netStatus != NotReachable)
+    {
+        //Reachable ..Network connection is available
+    }
+    else
+    {
+        //NSLog(@"Network Error No Network Available ");
+        
+        
+        UIAlertController *alertView = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:@"Please connect to an Internet connection to Register"
+                                                                    preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [self presentViewController:alertView animated:YES completion:nil];
+        
+    }
+}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActiveNotification) name:@"UIApplicationDidBecomeActiveNotification" object:nil];
-    Reachability* reach = [Reachability reachabilityForInternetConnection];
-//    reach.reachableOnWWAN = NO;
+    self.reach.reachableOnWWAN = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reachabilityChanged:)
                                                  name:kReachabilityChangedNotification
                                                object:nil];
-    
-    [reach startNotifier];
+    self.reach = [Reachability reachabilityWithAddress:@"www.google.com"];
+
+    [self.reach startNotifier];
+
     [self createRevealViewController];
+    
     self.mapView.delegate = self;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.79 green:0.23 blue:0.20 alpha:1];
     self.initialLocationSet = NO;
@@ -81,6 +115,8 @@
 - (void)applicationDidBecomeActiveNotification {
     [self viewDidLoad];
 }
+
+
 
 
 -(void)createRevealViewController {
@@ -280,6 +316,7 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:reach];
 }
 
 

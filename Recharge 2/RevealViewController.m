@@ -59,7 +59,7 @@
    
     
     
-    // http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedWithDistanceResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUGHCwCYdTtnSgEXn37RsDaOUpU9Ul33wH&Latitude=43.667686&Longitude=-79.389023&UserLatitude=43.667686&UserLongitude=-79.389023&isFilteredByDistance=True&distance=5.0&SortByProduct=Unleaded
+    // http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedWithDistanceResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUpoDKq8u+Js/Q5VYESTdIuE1Guw7bdsOY&Latitude=43.667686&Longitude=-79.389023&UserLatitude=43.667686&UserLongitude=-79.389023&isFilteredByDistance=True&distance=5.0&SortByProduct=Unleaded
     
     
     NSString *latitude = [NSString stringWithFormat:@"%f",self.locationManager.location.coordinate.latitude];
@@ -72,7 +72,7 @@
     components.host = @"services.opisnet.com";
     components.path = @"/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedWithDistanceResults";
     components.queryItems = @[
-                              [NSURLQueryItem queryItemWithName:@"UserTicket" value:@"vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUJJ5INNTqfBp6e/Hv7TbkDKqyyiYGSrOS" ],
+                              [NSURLQueryItem queryItemWithName:@"UserTicket" value:@"vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUe6y/ZTWUfRUq0FmKUkhD3QO7wZeqW/V2"],
                               [NSURLQueryItem queryItemWithName:@"Latitude" value:latitude],
                               [NSURLQueryItem queryItemWithName:@"Longitude" value:longitude],
                               [NSURLQueryItem queryItemWithName:@"SortByProduct" value:@"Unleaded"],
@@ -83,7 +83,6 @@
     NSURL *url = components.URL;
     NSAssert(url, @"must not be nil");
     NSLog(@"%s %@", __PRETTY_FUNCTION__, url);
-
     //    NSString *urlString = [NSString stringWithFormat:@"http://services.opisnet.com/RealtimePriceService/RealtimePriceServicePlus.asmx/GetLatLongSortedResults?UserTicket=vHsMe6FTPXZHPEUTXz5mi0H30WlHxQCUGHCwCYdTtnSgEXn37RsDaOUpU9Ul33wH&Latitude=%f&Longitude=%f&SortByProduct=Unleaded&isFilteredByDistance=True", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
     //     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     //

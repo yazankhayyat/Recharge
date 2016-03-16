@@ -45,19 +45,37 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+//    return 7;
     return self.gasStationsArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    GasStationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+      //  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+       GasStationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     GasStation *gasStation = self.gasStationsArray[indexPath.row];
     cell.stationNameLabel.text = gasStation.gasStationName;
     cell.priceLabel.text = [NSString stringWithFormat:@"Unleaded Gas Price: $%@", gasStation.gasPriceUnleaded];
     cell.distanceLabel.text = [NSString stringWithFormat:@"Time needed: %@ min",[self stringFromTimeInterval:gasStation.gasStationTime]];
-    
-    
+//
+//    #define ARC4RANDOM_MAX      0x100000000
+//    
+//    double val = ((double)arc4random() / ARC4RANDOM_MAX) + 0.5;
+//    int x = arc4random()% 8 + 4;
+//    NSString *shell = @"Shell";
+//    NSString *esso = @"Esso";
+//    NSString *petro = @"Petro Canada";
+//    
+//    NSArray *array = [[NSMutableArray alloc]initWithObjects:shell, esso, petro, nil];
+//    
+//    uint32_t rnd = arc4random_uniform([array count]);
+//    
+//    NSString *randomObject = [array objectAtIndex:rnd];
+//
+//    
+//        cell.stationNameLabel.text = [NSString stringWithFormat:@"%@", randomObject];
+//        cell.distanceLabel.text = [NSString stringWithFormat:@"%d min", x];
+//        cell.priceLabel.text = [NSString stringWithFormat:@"$%f/L", val];
     
     return cell;
 }
